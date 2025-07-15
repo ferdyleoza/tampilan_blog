@@ -1,0 +1,126 @@
+export const mockArticles = [
+  {
+    id: "1",
+    title: "Getting Started with Next.js 14",
+    description: "Learn the fundamentals of Next.js 14 and build modern web applications with the latest features.",
+    category: "Technology",
+    author: "John Smith",
+    date: "2024-01-15",
+  },
+  {
+    id: "2",
+    title: "The Future of Web Development",
+    description: "Exploring upcoming trends and technologies that will shape the future of web development.",
+    category: "Technology",
+    author: "Sarah Johnson",
+    date: "2024-01-12",
+  },
+  {
+    id: "3",
+    title: "Healthy Living Tips for Developers",
+    description: "Essential health and wellness tips for developers who spend long hours coding.",
+    category: "Lifestyle",
+    author: "Mike Davis",
+    date: "2024-01-10",
+  },
+  {
+    id: "4",
+    title: "Understanding React Server Components",
+    description: "A deep dive into React Server Components and how they revolutionize React applications.",
+    category: "Technology",
+    author: "Emily Chen",
+    date: "2024-01-08",
+  },
+  {
+    id: "5",
+    title: "Travel Photography Essentials",
+    description: "Master the art of travel photography with these essential tips and techniques.",
+    category: "Travel",
+    author: "Alex Rodriguez",
+    date: "2024-01-05",
+  },
+  {
+    id: "6",
+    title: "Building Scalable APIs with Node.js",
+    description: "Best practices for creating robust and scalable APIs using Node.js and Express.",
+    category: "Technology",
+    author: "David Wilson",
+    date: "2024-01-03",
+  },
+]
+
+export const mockCategories = [
+  { id: "1", name: "Technology" },
+  { id: "2", name: "Lifestyle" },
+  { id: "3", name: "Travel" },
+  { id: "4", name: "Food" },
+  { id: "5", name: "Health" },
+]
+
+export const mockAuthors = [
+  { id: "1", name: "John Smith", email: "john.smith@example.com" },
+  { id: "2", name: "Sarah Johnson", email: "sarah.johnson@example.com" },
+  { id: "3", name: "Mike Davis", email: "mike.davis@example.com" },
+  { id: "4", name: "Emily Chen", email: "emily.chen@example.com" },
+  { id: "5", name: "Alex Rodriguez", email: "alex.rodriguez@example.com" },
+  { id: "6", name: "David Wilson", email: "david.wilson@example.com" },
+]
+
+export const mockComments = [
+  {
+    id: "1",
+    articleId: "1",
+    name: "John Doe",
+    text: "Great article! Very helpful for getting started with Next.js.",
+    date: "2024-01-16",
+    editedBy: null,
+  },
+  {
+    id: "2",
+    articleId: "1",
+    name: "Jane Smith",
+    text: "Thanks for sharing this. The examples are really clear.",
+    date: "2024-01-17",
+    editedBy: null,
+  },
+  {
+    id: "3",
+    articleId: "2",
+    name: "Bob Johnson",
+    text: "Interesting perspective on the future of web development.",
+    date: "2024-01-13",
+    editedBy: "admin",
+  },
+  {
+    id: "4",
+    articleId: "3",
+    name: "Alice Brown",
+    text: "These health tips are exactly what I needed as a developer.",
+    date: "2024-01-11",
+    editedBy: null,
+  },
+  {
+    id: "5",
+    articleId: "4",
+    name: "Charlie Wilson",
+    text: "Server Components are game-changing. Great explanation!",
+    date: "2024-01-09",
+    editedBy: null,
+  },
+  {
+    id: "6",
+    articleId: "5",
+    name: "Diana Lee",
+    text: "Beautiful photography tips. Can't wait to try them on my next trip.",
+    date: "2024-01-06",
+    editedBy: null,
+  },
+  {
+    id: "7",
+    articleId: "1",
+    name: "John Doe",
+    text: "Looking forward to more Next.js content!",
+    date: "2024-01-18",
+    editedBy: null,
+  },
+]
