@@ -2,7 +2,7 @@
 import axios from 'axios';
 import Komentar from '../pages/komentar';
 
-const API_URL = 'http://localhost:6969/api/komentars';
+const API_URL = 'https://backendblog.up.railway.app/api/komentars';
 
 export const getAllKomentar = async () => {
   try {

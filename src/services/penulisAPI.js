@@ -1,7 +1,7 @@
 // src/service/penulis/penulisService.js
 import axios from 'axios';
 
-const API_URL = 'http://localhost:6969/api/penulis';
+const API_URL = 'https://backendblog.up.railway.app/api/penulis';
 
 export const getAllPenulis = async () => {
   try {

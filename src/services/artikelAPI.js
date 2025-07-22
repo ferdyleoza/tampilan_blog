@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:6969/api/artikels';
+const API_URL = 'https://backendblog.up.railway.app/api/artikels';
 
 export const getAllArtikel = async () => {
   try {
