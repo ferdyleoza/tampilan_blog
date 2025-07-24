@@ -1,7 +1,7 @@
 // src/services/userAPI.js
 import axios from 'axios';
 
-const API_URL = 'https://backendblog.up.railway.app/';
+const API_URL = 'https://backendblog.up.railway.app';
 
 export const loginUser = async (user) => {
   try {
