@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { loginUser } from '../services/userAPI';
+import Swal from 'sweetalert2'; // ← tambahkan ini
 
 const Login = () => {
   const navigate = useNavigate();
@@ -17,9 +18,25 @@ const Login = () => {
     try {
       const data = await loginUser(formData);
       console.log('📥 Respon login:', data);
-      navigate('/dashboard');
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Berhasil Login',
+        text: 'Selamat datang kembali!',
+        timer: 1500,
+        showConfirmButton: false,
+      });
+
+      setTimeout(() => {
+        navigate('/dashboard');
+      }, 1500); // biar animasi Swal selesai dulu
     } catch (err) {
       setError(err.message || 'Login gagal');
+      Swal.fire({
+        icon: 'error',
+        title: 'Login Gagal',
+        text: err.message || 'Cek email dan password kamu',
+      });
     }
   };
 

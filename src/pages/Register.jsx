@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { registerUser } from '../services/userAPI';
+import Swal from 'sweetalert2'; // ← Tambahin ini
 
 const Register = () => {
   const navigate = useNavigate();
@@ -9,21 +10,36 @@ const Register = () => {
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
-    // FIXED: e.target.name, bukan e.target.nama
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(''); // reset error setiap submit
+    setError('');
     try {
       console.log('📤 Dikirim:', formData);
       const data = await registerUser(formData);
       console.log('📥 Respon:', data);
-      navigate('/login', { replace: true });
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Registrasi Berhasil',
+        text: 'Silakan login dengan akunmu',
+        timer: 1500,
+        showConfirmButton: false,
+      });
+
+      setTimeout(() => {
+        navigate('/login', { replace: true });
+      }, 1500);
     } catch (err) {
       console.error('❌ Error register:', err);
       setError(err.message || 'Register gagal');
+      Swal.fire({
+        icon: 'error',
+        title: 'Gagal Registrasi',
+        text: err.message || 'Terjadi kesalahan saat registrasi.',
+      });
     }
   };
 
