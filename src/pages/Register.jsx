@@ -9,16 +9,17 @@ const Register = () => {
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.nama]: e.target.value });
+    // FIXED: e.target.name, bukan e.target.nama
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(''); // reset error setiap submit
     try {
-      const data = await registerUser(formData);
       console.log('📤 Dikirim:', formData);
+      const data = await registerUser(formData);
       console.log('📥 Respon:', data);
-      console.log('✅ Register berhasil. Redirect ke login...');
       navigate('/login', { replace: true });
     } catch (err) {
       console.error('❌ Error register:', err);

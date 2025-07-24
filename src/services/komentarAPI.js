@@ -1,23 +1,21 @@
 // src/services/komentarAPI.js
-import axios from 'axios';
-import Komentar from '../pages/komentar';
+import axiosInstance from './axiosinstance'; // sesuaikan path kalau perlu
 
-const API_URL = 'https://backendblog.up.railway.app/api/komentars';
+const ENDPOINT = '/komentars'; // supaya gampang diubah kalau perlu
 
 export const getAllKomentar = async () => {
   try {
-    const response = await axios.get(API_URL);
-    return response.data.data; // Pastikan backend kirim dalam field `data`
+    const response = await axiosInstance.get(ENDPOINT);
+    return response.data.data;
   } catch (error) {
     console.error('Gagal mengambil data komentar:', error);
     throw error;
   }
 };
 
-// Benar
 export const createKomentar = async (komentar) => {
   try {
-    const response = await axios.post(API_URL, komentar); // ✅ Kirim objek komentar
+    const response = await axiosInstance.post(ENDPOINT, komentar);
     return response.data.data;
   } catch (error) {
     console.error('Gagal menambahkan komentar:', error);
@@ -27,7 +25,7 @@ export const createKomentar = async (komentar) => {
 
 export const updateKomentar = async (id, komentar) => {
   try {
-    const response = await axios.put(`${API_URL}/${id}`, komentar); // ✅ Sama juga
+    const response = await axiosInstance.put(`${ENDPOINT}/${id}`, komentar);
     return response.data.data;
   } catch (error) {
     console.error('Gagal mengupdate komentar:', error);
@@ -35,10 +33,9 @@ export const updateKomentar = async (id, komentar) => {
   }
 };
 
-
 export const deleteKomentar = async (id) => {
   try {
-    const response = await axios.delete(`${API_URL}/${id}`);
+    const response = await axiosInstance.delete(`${ENDPOINT}/${id}`);
     return response.data.data;
   } catch (error) {
     console.error('Gagal menghapus komentar:', error);

@@ -1,10 +1,9 @@
-import axios from 'axios';
+import axiosInstance from './axiosinstance'; // pastikan path ini sesuai
 
-const API_URL = 'https://backendblog.up.railway.app/api/kategoris';
-
+// GET semua kategori
 export const getAllKategori = async () => {
   try {
-    const response = await axios.get(API_URL);
+    const response = await axiosInstance.get('/kategoris');
     return response.data.data;
   } catch (error) {
     console.error('Gagal mengambil data kategori:', error);
@@ -12,9 +11,10 @@ export const getAllKategori = async () => {
   }
 };
 
+// POST kategori baru
 export const createKategori = async (data) => {
   try {
-    const response = await axios.post(API_URL, data);
+    const response = await axiosInstance.post('/kategoris', data);
     return response.data.data;
   } catch (error) {
     console.error('Gagal menambah kategori:', error);
@@ -22,9 +22,10 @@ export const createKategori = async (data) => {
   }
 };
 
+// PUT update kategori
 export const updateKategori = async (id, data) => {
   try {
-    const response = await axios.put(`${API_URL}/${id}`, data);
+    const response = await axiosInstance.put(`/kategoris/${id}`, data);
     return response.data.data;
   } catch (error) {
     console.error('Gagal mengupdate kategori:', error.response?.data || error);
@@ -32,10 +33,11 @@ export const updateKategori = async (id, data) => {
   }
 };
 
+// DELETE kategori
 export const deleteKategori = async (id) => {
   try {
-    const response = await axios.delete(`${API_URL}/${id}`);
-    return response.data; // optional
+    const response = await axiosInstance.delete(`/kategoris/${id}`);
+    return response.data;
   } catch (error) {
     console.error('Gagal menghapus kategori:', error.response?.data || error);
     throw error;

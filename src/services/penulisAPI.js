@@ -1,11 +1,11 @@
 // src/service/penulis/penulisService.js
-import axios from 'axios';
+import axiosInstance from './axiosinstance'; // pastikan path ini sesuai
 
-const API_URL = 'https://backendblog.up.railway.app/api/penulis';
+const ENDPOINT = '/penulis'; // biar clean dan konsisten
 
 export const getAllPenulis = async () => {
   try {
-    const response = await axios.get(API_URL);
+    const response = await axiosInstance.get(ENDPOINT);
     return response.data.data;
   } catch (error) {
     console.error('Gagal mengambil data penulis:', error);
@@ -15,7 +15,7 @@ export const getAllPenulis = async () => {
 
 export const createPenulis = async (penulis) => {
   try {
-    const response = await axios.post(API_URL, penulis);
+    const response = await axiosInstance.post(ENDPOINT, penulis);
     return response.data.data;
   } catch (error) {
     console.error('Gagal menambahkan penulis:', error);
@@ -25,7 +25,7 @@ export const createPenulis = async (penulis) => {
 
 export const updatePenulis = async (id, penulis) => {
   try {
-    const response = await axios.put(`${API_URL}/${id}`, penulis);
+    const response = await axiosInstance.put(`${ENDPOINT}/${id}`, penulis);
     return response.data.data;
   } catch (error) {
     console.error('Gagal mengupdate penulis:', error);
@@ -35,12 +35,10 @@ export const updatePenulis = async (id, penulis) => {
 
 export const deletePenulis = async (id) => {
   try {
-    const response = await axios.delete(`${API_URL}/${id}`);
+    const response = await axiosInstance.delete(`${ENDPOINT}/${id}`);
     return response.data.data;
   } catch (error) {
     console.error('Gagal menghapus penulis:', error);
     throw error;
   }
 };
-
-

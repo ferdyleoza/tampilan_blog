@@ -1,43 +1,42 @@
-import axios from 'axios';
+import axiosInstance from './axiosinstance';
 
-const API_URL = 'https://backendblog.up.railway.app/api/artikels';
-
+// ARTIKEL
 export const getAllArtikel = async () => {
   try {
-    const response = await axios.get(API_URL);
-    return response.data.data || []; // fallback jika data kosong
+    const response = await axiosInstance.get("/artikels");
+    return response.data.data || [];
   } catch (error) {
-    console.error('Gagal mengambil data artikel:', error);
+    console.error("Gagal mengambil data artikel:", error);
     throw error;
   }
 };
 
 export const createArtikel = async (artikel) => {
   try {
-    const response = await axios.post(API_URL, artikel);
+    const response = await axiosInstance.post("/artikels", artikel);
     return response.data.data || response.data;
   } catch (error) {
-    console.error('Gagal menambahkan artikel:', error.response?.data || error);
+    console.error("Gagal menambahkan artikel:", error.response?.data || error);
     throw error;
   }
 };
 
 export const updateArtikel = async (id, artikel) => {
   try {
-    const response = await axios.put(`${API_URL}/${id}`, artikel);
+    const response = await axiosInstance.put(`/artikels/${id}`, artikel);
     return response.data.data || response.data;
   } catch (error) {
-    console.error('Gagal mengupdate artikel:', error.response?.data || error);
+    console.error("Gagal mengupdate artikel:", error.response?.data || error);
     throw error;
   }
 };
 
 export const deleteArtikel = async (id) => {
   try {
-    const response = await axios.delete(`${API_URL}/${id}`);
+    const response = await axiosInstance.delete(`/artikels/${id}`);
     return response.data.data || response.data;
   } catch (error) {
-    console.error('Gagal menghapus artikel:', error.response?.data || error);
+    console.error("Gagal menghapus artikel:", error.response?.data || error);
     throw error;
   }
 };
