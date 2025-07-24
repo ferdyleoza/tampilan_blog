@@ -1,40 +1,28 @@
 // src/pages/Register.jsx
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { registerUser } from '../services/userAPI';
 
 const Register = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+  const [formData, setFormData] = useState({ nama: '', email: '', password: '' });
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.nama]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('https://backendblog.up.railway.app/api/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify(formData),
-      });
-
-      const data = await res.json();
-      console.log("📤 Dikirim:", formData);
-      console.log("📥 Status:", res.status);
-      console.log("📥 Respon:", data);
-
-      if (res.ok) {
-        console.log("✅ Register berhasil. Redirect ke login...");
-        navigate('/login', { replace: true });
-      } else {
-        setError(data.message || 'Register gagal');
-      }
+      const data = await registerUser(formData);
+      console.log('📤 Dikirim:', formData);
+      console.log('📥 Respon:', data);
+      console.log('✅ Register berhasil. Redirect ke login...');
+      navigate('/login', { replace: true });
     } catch (err) {
-      console.error("❌ Error register:", err);
-      setError('Gagal terhubung ke server');
+      console.error('❌ Error register:', err);
+      setError(err.message || 'Register gagal');
     }
   };
 
@@ -45,9 +33,9 @@ const Register = () => {
       <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-4">
         <input
           type="text"
-          name="name"
+          name="nama"
           placeholder="Nama"
-          value={formData.name}
+          value={formData.nama}
           onChange={handleChange}
           required
           className="w-full px-4 py-2 border rounded outline-none"

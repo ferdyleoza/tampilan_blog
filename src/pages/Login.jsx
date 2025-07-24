@@ -1,6 +1,7 @@
 // src/pages/Login.jsx
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { loginUser } from '../services/userAPI';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,23 +15,11 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('https://backendblog.up.railway.app/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify(formData),
-      });
-
-      const data = await res.json();
-      console.log("📥 Respon login:", data);
-
-      if (res.ok) {
-        navigate('/dashboard');
-      } else {
-        setError(data.message || 'Login gagal');
-      }
+      const data = await loginUser(formData);
+      console.log('📥 Respon login:', data);
+      navigate('/dashboard');
     } catch (err) {
-      setError('Gagal terhubung ke server');
+      setError(err.message || 'Login gagal');
     }
   };
 
