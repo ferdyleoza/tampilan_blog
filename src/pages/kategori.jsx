@@ -79,58 +79,67 @@ const Kategori = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gray-100 p-6">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold mb-6 text-gray-800">Daftar Kategori</h1>
-
-        <form onSubmit={handleSubmit} className="flex items-center gap-4 mb-8 max-w-xl">
-          <input
-            type="text"
-            value={nama}
-            onChange={(e) => setNama(e.target.value)}
-            placeholder="Nama kategori"
-            className="flex-grow px-4 py-2 bg-gray-200 text-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400"
-          />
-          <button
-            type="submit"
-            className="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition"
+    <div className="ml-64">
+      <div className="flex-1 min-h-screen bg-white p-6">
+        <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-2xl p-8">
+          <h1 className="text-4xl font-extrabold mb-8 text-[#4B2E09] text-center drop-shadow-lg">
+            Daftar Kategori
+          </h1>
+          <form
+            onSubmit={handleSubmit}
+            className="flex items-center gap-4 mb-8 max-w-xl mx-auto"
           >
-            {editingId ? 'Update' : 'Tambah'}
-          </button>
-        </form>
-
-        {loading ? (
-          <p className="text-gray-500 italic">Memuat data...</p>
-        ) : kategoriList.length === 0 ? (
-          <p className="text-gray-500 italic">Tidak ada kategori tersedia.</p>
-        ) : (
-          <ul className="grid md:grid-cols-2 gap-4">
-            {kategoriList.map((kategori) => (
-              <li
-                key={kategori._id}
-                className="p-4 border rounded-lg shadow bg-white flex justify-between items-center"
-              >
-                <span className="text-gray-800">{kategori.nama}</span>
-                <div className="flex gap-3">
-                  <button
-                    onClick={() => handleEdit(kategori)}
-                    className="text-gray-600 hover:text-yellow-500 transition"
-                    title="Edit"
-                  >
-                    <FiEdit2 size={18} />
-                  </button>
-                  <button
-                    onClick={() => handleDelete(kategori._id)}
-                    className="text-gray-600 hover:text-red-600 transition"
-                    title="Hapus"
-                  >
-                    <FiTrash2 size={18} />
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
+            <input
+              type="text"
+              value={nama}
+              onChange={(e) => setNama(e.target.value)}
+              placeholder="Nama kategori"
+              className="flex-grow px-4 py-2 bg-[#F5F5F5] text-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C19A6B] shadow"
+            />
+            <button
+              type="submit"
+              className="bg-[#4B2E09] hover:bg-[#C19A6B] text-white px-4 py-2 rounded-lg shadow-lg hover:scale-105 transition font-semibold"
+            >
+              {editingId ? 'Update' : 'Tambah'}
+            </button>
+          </form>
+          {loading ? (
+            <p className="text-gray-500 italic text-center">Memuat data...</p>
+          ) : kategoriList.length === 0 ? (
+            <p className="text-gray-500 italic text-center">
+              Tidak ada kategori tersedia.
+            </p>
+          ) : (
+            <ul className="grid md:grid-cols-2 gap-6">
+              {kategoriList.map((kategori) => (
+                <li
+                  key={kategori._id}
+                  className="p-6 bg-[#F5F5F5] rounded-xl shadow-lg flex justify-between items-center hover:bg-[#C19A6B]/20 hover:scale-105 transition-all duration-300"
+                >
+                  <span className="text-[#4B2E09] font-semibold">
+                    {kategori.nama}
+                  </span>
+                  <div className="flex gap-3">
+                    <button
+                      onClick={() => handleEdit(kategori)}
+                      className="text-[#4B2E09] hover:text-[#C19A6B] transition"
+                      title="Edit"
+                    >
+                      <FiEdit2 size={20} />
+                    </button>
+                    <button
+                      onClick={() => handleDelete(kategori._id)}
+                      className="text-[#4B2E09] hover:text-red-600 transition"
+                      title="Hapus"
+                    >
+                      <FiTrash2 size={20} />
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
     </div>
   );

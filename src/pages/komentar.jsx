@@ -69,52 +69,56 @@ const Komentar = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gray-100 p-6">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold mb-6 text-gray-800">Daftar Komentar</h1>
-
-        <form
-          onSubmit={handleSubmit}
-          className="flex items-center mb-6 gap-2 max-w-xl"
-        >
-          <input
-            type="text"
-            placeholder="Tulis komentar..."
-            className="w-full px-4 py-2 bg-gray-200 text-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400"
-            value={newKomentar}
-            onChange={(e) => setNewKomentar(e.target.value)}
-          />
-          <button
-            type="submit"
-            className="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition"
+    <div className="ml-64">
+      <div className="flex-1 min-h-screen bg-white p-6">
+        <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-2xl p-8">
+          <h1 className="text-4xl font-extrabold mb-8 text-[#4B2E09] text-center drop-shadow-lg">
+            Daftar Komentar
+          </h1>
+          <form
+            onSubmit={handleSubmit}
+            className="flex items-center mb-8 gap-2 max-w-xl mx-auto"
           >
-            Kirim
-          </button>
-        </form>
-
-        {loading ? (
-          <p className="text-gray-500 italic">Memuat komentar...</p>
-        ) : komentarList.length === 0 ? (
-          <p className="text-gray-500 italic">Tidak ada komentar.</p>
-        ) : (
-          <ul className="grid md:grid-cols-2 gap-4">
-            {komentarList.map((komentar) => (
-              <li
-                key={komentar._id}
-                className="bg-white p-4 rounded-lg shadow flex justify-between items-center"
-              >
-                <p className="text-gray-800">{komentar.isi}</p>
-                <button
-                  onClick={() => handleDelete(komentar._id)}
-                  className="text-gray-500 hover:text-red-600 transition"
-                  title="Hapus komentar"
+            <input
+              type="text"
+              placeholder="Tulis komentar..."
+              className="w-full px-4 py-2 bg-[#F5F5F5] text-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C19A6B] shadow"
+              value={newKomentar}
+              onChange={(e) => setNewKomentar(e.target.value)}
+            />
+            <button
+              type="submit"
+              className="px-4 py-2 bg-[#4B2E09] hover:bg-[#C19A6B] text-white rounded-lg shadow-lg hover:scale-105 transition font-semibold"
+            >
+              Kirim
+            </button>
+          </form>
+          {loading ? (
+            <p className="text-gray-500 italic text-center">
+              Memuat komentar...
+            </p>
+          ) : komentarList.length === 0 ? (
+            <p className="text-gray-500 italic text-center">Tidak ada komentar.</p>
+          ) : (
+            <ul className="grid md:grid-cols-2 gap-6">
+              {komentarList.map((komentar) => (
+                <li
+                  key={komentar._id}
+                  className="bg-[#F5F5F5] p-6 rounded-xl shadow-lg flex justify-between items-center hover:bg-[#C19A6B]/20 hover:scale-105 transition-all duration-300"
                 >
-                  <FiTrash2 size={18} />
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
+                  <p className="text-gray-800 font-medium">{komentar.isi}</p>
+                  <button
+                    onClick={() => handleDelete(komentar._id)}
+                    className="text-[#4B2E09] hover:text-red-600 transition"
+                    title="Hapus komentar"
+                  >
+                    <FiTrash2 size={20} />
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
     </div>
   );
