@@ -16,8 +16,6 @@ const Artikel = () => {
     judul: '',
     isi: '',
     tanggal: '',
-    id_penulis: '',
-    id_kategori: '',
   });
   const [editId, setEditId] = useState(null);
 
@@ -49,8 +47,6 @@ const Artikel = () => {
         judul: formData.judul,
         isi: formData.isi,
         tanggal: new Date(formData.tanggal),
-        id_penulis: formData.id_penulis,
-        id_kategori: formData.id_kategori,
       };
 
       if (editId) {
@@ -66,8 +62,6 @@ const Artikel = () => {
         judul: '',
         isi: '',
         tanggal: '',
-        id_penulis: '',
-        id_kategori: '',
       });
       setEditId(null);
       fetchArtikel();
@@ -83,8 +77,6 @@ const Artikel = () => {
       judul: artikel.judul,
       isi: artikel.isi,
       tanggal: artikel.tanggal?.split('T')[0] || '',
-      id_penulis: artikel.id_penulis,
-      id_kategori: artikel.id_kategori,
     });
     setEditId(artikel._id || artikel.id);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -152,24 +144,6 @@ const Artikel = () => {
               className="bg-gray-200 p-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-gray-400 shadow"
               required
             />
-            <input
-              type="text"
-              name="id_penulis"
-              value={formData.id_penulis}
-              onChange={handleChange}
-              placeholder="ID Penulis"
-              className="bg-gray-200 p-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-gray-400 shadow"
-              required
-            />
-            <input
-              type="text"
-              name="id_kategori"
-              value={formData.id_kategori}
-              onChange={handleChange}
-              placeholder="ID Kategori"
-              className="bg-gray-200 p-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-gray-400 shadow"
-              required
-            />
             <button
               type="submit"
               className="col-span-1 md:col-span-2 bg-gray-700 hover:bg-gray-500 text-white font-semibold py-3 rounded-lg shadow-lg transition flex items-center justify-center gap-2"
@@ -212,12 +186,6 @@ const Artikel = () => {
                   <p className="text-sm text-gray-600 mb-2">{artikel.isi}</p>
                   <p className="text-xs text-gray-500 mb-1">
                     {new Date(artikel.tanggal).toLocaleDateString()}
-                  </p>
-                  <p className="text-xs text-gray-500">
-                    Penulis ID: {artikel.id_penulis}
-                  </p>
-                  <p className="text-xs text-gray-500">
-                    Kategori ID: {artikel.id_kategori}
                   </p>
                   <div className="flex gap-3 mt-4 md:mt-0">
                     <button
